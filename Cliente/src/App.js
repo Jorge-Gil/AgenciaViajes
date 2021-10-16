@@ -2,6 +2,7 @@ import "./App.css";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import Home from "./Vistas/Home";
 import Registro from "./Vistas/Registro";
+import InicioSesion from "./Vistas/InicioSesion";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/registro" exact component={Registro} />
+          <Route path="/IniciarSesion" exact component={InicioSesion} />
         </Switch>
       </Router>
     </div>

@@ -7,6 +7,7 @@ router.get("/", async (req, res) => {
   res.json(listaDeCuentas);
 });
 
+//Función para Insertar una cuenta en la base de datos
 // Se hace un post request a la route de la cuenta
 //Debe ser asincrona porque debe esperar a que los datos sean insertados antes de seguir con la request o cualquier otra cosa.
 router.post("/", async (req, res) => {

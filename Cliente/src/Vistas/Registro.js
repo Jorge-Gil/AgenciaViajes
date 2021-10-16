@@ -35,12 +35,13 @@ function Registro() {
   const onSubmit = (data) => {
     axios.post("http://localhost:3001/Cuentas", data).then(() => {
       console.log(data);
+      alert("Registrado Correctamente")
     });
   };
 
-  const opciones = (valores) => {
-    const { Generos } = valores;
-  };
+  // const opciones = (valores) => {
+  //   const { Generos } = valores;
+  // };
   return (
     <div className="Registro">
       <Formik
@@ -49,108 +50,117 @@ function Registro() {
         onSubmit={onSubmit}
       >
         <Form className="contenedorRegistro">
-          <label> Nombre de Usuario</label>
-          <ErrorMessage name="NombreUsuario" component="span" />
-          <Field
-            autocomplete="off"
-            id="formatoRegistro"
-            name="NombreUsuario"
-            placeholder="xXxPu55yD35tr0y3r69xXx..."
-          />
-          <label> Contraseña</label>
-          <ErrorMessage name="Contrasenia" component="span" />
-          <Field
-            autocomplete="off"
-            id="formatoRegistro"
-            name="Contrasenia"
-            placeholder="Ingrese su contraseña"
-          />
+          <div className="izquierdaRegistro">
+            <label> Nombre de Usuario</label>
+            <ErrorMessage name="NombreUsuario" component="span" />
+            <Field
+              autoComplete="off"
+              id="formatoRegistro"
+              name="NombreUsuario"
+              placeholder="Ej. SoyMuyCool69..."
+            />
+            <label> Contraseña</label>
+            <ErrorMessage name="Contrasenia" component="span" />
+            <Field
+              autoComplete="off"
+              id="formatoRegistro"
+              name="Contrasenia"
+              placeholder="Ingrese su contraseña..."
+            />
 
-          <label> Primer nombre</label>
-          <ErrorMessage name="Nombre1Cuenta" component="span" />
-          <Field
-            autocomplete="off"
-            id="formatoRegistro"
-            name="Nombre1Cuenta"
-            placeholder="Ingrese su Primer nombre"
-          />
+            <label> Primer nombre</label>
+            <ErrorMessage name="Nombre1Cuenta" component="span" />
+            <Field
+              autoComplete="off"
+              id="formatoRegistro"
+              name="Nombre1Cuenta"
+              placeholder="Ingrese su Primer nombre..."
+            />
 
-          <label> Segundo nombre</label>
-          <ErrorMessage name="Nombre2Cuenta" component="span" />
-          <Field
-            autocomplete="off"
-            id="formatoRegistro"
-            name="Nombre2Cuenta"
-            placeholder="Ingrese su Segundo nombre"
-          />
+            <label> Segundo nombre</label>
+            <ErrorMessage name="Nombre2Cuenta" component="span" />
+            <Field
+              autoComplete="off"
+              id="formatoRegistro"
+              name="Nombre2Cuenta"
+              placeholder="Ingrese su Segundo nombre..."
+            />
 
-          <label> Primer apellido</label>
-          <ErrorMessage name="Apellido1Cuenta" component="span" />
-          <Field
-            autocomplete="off"
-            id="formatoRegistro"
-            name="Apellido1Cuenta"
-            placeholder="Ingrese su Primer apellido"
-          />
+            <label> Primer apellido</label>
+            <ErrorMessage name="Apellido1Cuenta" component="span" />
+            <Field
+              autoComplete="off"
+              id="formatoRegistro"
+              name="Apellido1Cuenta"
+              placeholder="Ingrese su Primer apellido..."
+            />
 
-          <label> Segundo apellido</label>
-          <ErrorMessage name="Apellido2Cuenta" component="span" />
-          <Field
-            autocomplete="off"
-            id="formatoRegistro"
-            name="Apellido2Cuenta"
-            placeholder="Ingrese su Segundo apellido"
-          />
+            <label> Segundo apellido</label>
+            <ErrorMessage name="Apellido2Cuenta" component="span" />
+            <Field
+              autoComplete="off"
+              id="formatoRegistro"
+              name="Apellido2Cuenta"
+              placeholder="Ingrese su Segundo apellido..."
+            />
+          </div>
+          <div className="derechaRegistro">
+            <label> Genero</label>
+            <ErrorMessage name="Genero" component="span" />
+            <Field
+              autoComplete="off"
+              id="formatoRegistro"
+              name="Genero"
+              placeholder="Ingrese su Genero..."
+            />
+            {/* <select
+              name="Genero"
+              // value={opciones.Genero}
+              id="formatoRegistro"
+              style={{ display: "block" }}
+            >
+              <option value="" label="Seleccione su genero..." />
+              <option value="Hombre" label="Hombre" />
+              <option value="Mujer" label="Mujer" />
+              <option value="Otro" label="Otro" />
+            </select> */}
 
-          <label> Genero</label>
-          <ErrorMessage name="Genero" component="span" />
-          <select
-            name="Genero"
-            value={opciones.Genero}
-            id="formatoRegistro"
-            style={{ display: "block" }}
-          >
-            <option value="" label="Seleccione su genero" />
-            <option value="Hombre" label="Hombre" />
-            <option value="Mujer" label="Mujer" />
-            <option value="Otro" label="Otro" />
-          </select>
+            <label> Cedula</label>
+            <ErrorMessage name="Cedula" component="span" />
+            <Field
+              autoComplete="off"
+              id="formatoRegistro"
+              name="Cedula"
+              placeholder="Ingrese su Cedula..."
+            />
 
-          <label> Cedula</label>
-          <ErrorMessage name="Cedula" component="span" />
-          <Field
-            autocomplete="off"
-            id="formatoRegistro"
-            name="Cedula"
-            placeholder="Ingrese su Cedula"
-          />
+            <label> Dirección </label>
+            <ErrorMessage name="DireccionCuenta" component="span" />
+            <Field
+              autoComplete="off"
+              id="formatoRegistro"
+              name="DireccionCuenta"
+              placeholder="Ingrese su Dirección..."
+            />
 
-          <label> Dirección </label>
-          <ErrorMessage name="DireccionCuenta" component="span" />
-          <Field
-            autocomplete="off"
-            id="formatoRegistro"
-            name="DireccionCuenta"
-            placeholder="Ingrese su Dirección"
-          />
+            <label> Número de Teléfono </label>
+            <ErrorMessage name="TelefonoCuenta" component="span" />
+            <Field
+              autoComplete="off"
+              id="formatoRegistro"
+              name="TelefonoCuenta"
+              placeholder="Ingrese su Teléfono..."
+            />
 
-          <label> Número de Teléfono </label>
-          <ErrorMessage name="TelefonoCuenta" component="span" />
-          <Field
-            autocomplete="off"
-            id="formatoRegistro"
-            name="TelefonoCuenta"
-            placeholder="Ingrese su Teléfono"
-          />
-
-          <label> Número de Celular </label>
-          <ErrorMessage name="CelularCuenta" component="span" />
-          <Field
-            autocomplete="off"
-            id="formatoRegistro"
-            name="CelularCuenta"
-            placeholder="Ingrese su Número de Celular"
-          />
+            <label> Número de Celular </label>
+            <ErrorMessage name="CelularCuenta" component="span" />
+            <Field
+              autoComplete="off"
+              id="formatoRegistro"
+              name="CelularCuenta"
+              placeholder="Ingrese su Número de Celular..."
+            />
+          </div>
           <button type="submit"> Registrarse</button>
         </Form>
       </Formik>
