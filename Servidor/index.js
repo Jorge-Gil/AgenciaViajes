@@ -14,7 +14,8 @@ app.use(cors());
 //Routers
 const cuentasRouter = require('./Controller/CuentasRoute')
 app.use("/CuentasRoute", cuentasRouter);
-
+const paquetesRouter = require('./Controller/PaquetesRoute')
+app.use("/PaquetesRoute", paquetesRouter);
 
 db.sequelize.sync().then(() => {
   app.listen(3001, () => {
