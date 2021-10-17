@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
       },
 
       Contrasenia: {
-        type: DataTypes.STRING(20),
+        type: DataTypes.STRING(100),
         allowNull: false,
       },
 
