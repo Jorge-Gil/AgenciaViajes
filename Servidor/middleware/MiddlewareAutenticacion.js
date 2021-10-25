@@ -14,12 +14,13 @@ const validarToken = (req, res, next) => {
   try {
     // Se verifica el token que llega del request y se compara con el secreto con el que se creo el token
     const TokenValido = verify(TokenAcceso, "Secreto");
-
+    // TokenValido contendra la información de la cuenta
+    req.Cuenta = TokenValido;
     if (TokenValido) {
       return next();
     }
   } catch (err) {
-    return res.json({ error: err });
+     res.json({ error: err });
   }
 };
 

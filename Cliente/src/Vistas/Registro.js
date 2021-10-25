@@ -35,7 +35,7 @@ function Registro() {
   const onSubmit = (data) => {
     axios.post("http://localhost:3001/Cuentas", data).then(() => {
       console.log(data);
-      alert("Registrado Correctamente")
+      alert("Registrado Correctamente");
     });
   };
 
@@ -161,7 +161,9 @@ function Registro() {
               placeholder="Ingrese su Número de Celular..."
             />
           </div>
-          <button type="submit"> Registrarse</button>
+          <div className="botonRegistro">
+            <button type="submit"> Registrarse</button>
+          </div>
         </Form>
       </Formik>
     </div>

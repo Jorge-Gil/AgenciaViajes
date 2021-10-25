@@ -3,6 +3,7 @@ const router = express.Router();
 const { Cuentas } = require("../models");
 const bcrypt = require("bcrypt");
 const { sign } = require("jsonwebtoken");
+const {validarToken} = require("../middleware/MiddlewareAutenticacion")
 
 router.get("/", async (req, res) => {
   const listaDeCuentas = await Cuentas.findAll();
@@ -79,8 +80,12 @@ router.post("/IniciarSesion", async (req, res) => {
       /*se le pasa una palabra secreta que protege al token*/ "Secreto"
     );
 
-    res.json(TokenAcceso);
+    res.json({token: TokenAcceso, NombreUsuario: NombreUsuario, IdCuenta: Cuenta.IdCuenta});
   });
 });
+
+router.get("/Cuenta", validarToken, (req,res) =>{
+  res.json(req.Cuenta)
+})
 
 module.exports = router;

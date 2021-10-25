@@ -4,11 +4,12 @@ const cors = require("cors");
 
 //para poder retornar Json como respuesta de los post requests
 app.use(express.json());
+app.use(cors());
 
 const db = require("./models");
 
-app.use(express.json());
-app.use(cors());
+
+
 
 
 //Routers
