@@ -33,6 +33,15 @@ body {
   margin-left: 20px;
 }
 
+.barraNav button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  width: 120px;
+  height: 40px;
+  font-size: 16px;
+
+}
 
 .Registro {
   font-family: Arial, Helvetica, sans-serif;
