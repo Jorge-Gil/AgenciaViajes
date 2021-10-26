@@ -60,10 +60,14 @@ function App() {
                 </>
               ) : (
                 <>
-                  <Link to="/admin"> Administrador</Link>
                   <button onClick={cerrarSesion}> Cerrar Sesión </button>
                 </>
-              )}
+              )}{" "}
+              {estadoAutorizacion.IdCuenta === 1 ? (
+                <>
+                  <Link to="/admin"> Funciones Admin</Link>
+                </>
+              ) : null}
             </div>
             <h1>{estadoAutorizacion.NombreUsuario}</h1>
           </div>
