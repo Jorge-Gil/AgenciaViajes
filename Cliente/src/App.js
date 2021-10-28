@@ -62,7 +62,7 @@ function App() {
                 <>
                   <button onClick={cerrarSesion}> Cerrar Sesión </button>
                 </>
-              )}{" "}
+              )}
               {estadoAutorizacion.IdCuenta === 1 ? (
                 <>
                   <Link to="/admin"> Funciones Admin</Link>

@@ -19,23 +19,56 @@ function Registro() {
   };
 
   const validacion = Yup.object().shape({
-    NombreUsuario: Yup.string().min(3).max(20).required(),
-    Contrasenia: Yup.string().min(3).max(20).required(),
-    Nombre1Cuenta: Yup.string().min(3).max(20).required(),
-    Nombre2Cuenta: Yup.string().min(3).max(20).notRequired(),
-    Apellido1Cuenta: Yup.string().min(3).max(20).required(),
-    Apellido2Cuenta: Yup.string().min(3).max(20).notRequired(),
-    Genero: Yup.string().min(3).max(15).required(),
-    Cedula: Yup.string().min(3).max(20).required(),
-    DireccionCuenta: Yup.string().min(3).max(40).required(),
-    TelefonoCuenta: Yup.string().min(3).max(12).required(),
-    CelularCuenta: Yup.string().min(3).max(10).required(),
+    NombreUsuario: Yup.string()
+      .min(3, "El nombre de usuario debe contener como mínimo 3 caracteres")
+      .max(20, "El nombre de usuario debe contener como máximo 3 caracteres")
+      .required("Nombre de usuario es un campo requerido"),
+    Contrasenia: Yup.string()
+      .min(3, "La contraseña debe tener como mínimo 3 caracteres")
+      .max(20, "La contraseña debe tener como máximo 20 caracteres")
+      .required("Contraseña es un campo requerido"),
+    Nombre1Cuenta: Yup.string()
+      .min(3, "El primer nombre debe tener como mínimo 3 caracteres")
+      .max(20, "El primer nombre debe tener como máximo 20 caracteres")
+      .required("Primer nombre es un campo requerido"),
+    Nombre2Cuenta: Yup.string()
+      .min(3, "El segundo nombre debe tener como mínimo 3 caracteres")
+      .max(20, "El segundo nombre debe tener como máximo 20 caracteres")
+      .notRequired(),
+    Apellido1Cuenta: Yup.string()
+      .min(3, "El primer apellido debe tener como mínimo 3 caracteres")
+      .max(20, "El primer apellido debe tener como máximo 20 caracteres")
+      .required("Primer apellido es un campo requerido"),
+    Apellido2Cuenta: Yup.string()
+      .min(3, "El segundo apellido debe tener como mínimo 3 caracteres")
+      .max(20, "El segundo apellido debe tener como máximo 20 caracteres")
+      .notRequired(),
+    Genero: Yup.string()
+      .min(3, "El Género debe tener como mínimo 3 caracteres")
+      .max(15, "El Género debe tener como máximo 15 caracteres")
+      .required("Genero es un campo requerido"),
+    Cedula: Yup.string()
+      .min(3, "La cédula debe tener como mínimo 3 caracteres")
+      .max(20, "La cédula debe tener como máximo 20 caracteres")
+      .required("Cédula es un campo requerido"),
+    DireccionCuenta: Yup.string()
+      .min(3, "La dirección debe tener como mínimo 3 caracteres")
+      .max(40, "La cédula debe tener como máximo 40 caracteres")
+      .required("Dirección es un campo requerido"),
+    TelefonoCuenta: Yup.string()
+      .min(3, "El número de teléfono debe tener como mínimo 3 caracteres")
+      .max(12, "El número de teléfono debe tener como máximo 12 caracteres")
+      .required("Número de teléfono es un campo requerido"),
+    CelularCuenta: Yup.string()
+      .min(3, "El número de celular debe tener como mínimo 3 caracteres")
+      .max(10, "El número de teléfono debe tener como máximo 10 caracteres")
+      .required("Número de celular es un campo requerido"),
   });
 
   const onSubmit = (data) => {
     axios.post("http://localhost:3001/Cuentas", data).then(() => {
       console.log(data);
-      alert("Registrado Correctamente");
+      alert("Cuenta registrada Correctamente");
     });
   };
 
@@ -111,7 +144,7 @@ function Registro() {
               autoComplete="off"
               id="formatoRegistro"
               name="Genero"
-              placeholder="Ingrese su Genero..."
+              placeholder="Ingrese su Género..."
             />
             {/* <select
               name="Genero"
@@ -131,7 +164,7 @@ function Registro() {
               autoComplete="off"
               id="formatoRegistro"
               name="Cedula"
-              placeholder="Ingrese su Cedula..."
+              placeholder="Ingrese su Cédula..."
             />
 
             <label> Dirección </label>
