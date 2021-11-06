@@ -21,7 +21,7 @@ function Registro() {
   const validacion = Yup.object().shape({
     NombreUsuario: Yup.string()
       .min(3, "El nombre de usuario debe contener como mínimo 3 caracteres")
-      .max(20, "El nombre de usuario debe contener como máximo 3 caracteres")
+      .max(20, "El nombre de usuario debe contener como máximo 20 caracteres")
       .required("Nombre de usuario es un campo requerido"),
     Contrasenia: Yup.string()
       .min(3, "La contraseña debe tener como mínimo 3 caracteres")

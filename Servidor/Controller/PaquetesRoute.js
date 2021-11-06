@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
 
 // Se hace un post request a la route de la cuenta
 //Debe ser asincrona porque debe esperar a que los datos sean insertados antes de seguir con la request o cualquier otra cosa.
-router.post("/", async (req, res) => {
+router.post("/InsertarPaquete", async (req, res) => {
   //Se agarran los atributos de la cuenta por el body que se manda en el request
   const Paquete_Turistico = req.body;
   //Se le pasa un objeto con el mismo formato del modelo .create es una funcion de sequelize para insertar los datos en una tabla

@@ -7,6 +7,7 @@ import IniciarSesion from "./Vistas/IniciarSesion";
 import HomeIcon from "@material-ui/icons/Home";
 import { Autorizacion } from "./Autorizacion";
 import Administrador from "./Vistas/Administrador";
+import AgregarCategoria from "./Vistas/AgregarCategoria";
 import axios from "axios";
 
 function App() {
@@ -76,6 +77,7 @@ function App() {
             <Route path="/registro" exact component={Registro} />
             <Route path="/IniciarSesion" exact component={IniciarSesion} />
             <Route path="/admin" exact component={Administrador} />
+            <Route path="/agregarCategoria" exact component={AgregarCategoria} />
           </Switch>
         </Router>
       </Autorizacion.Provider>
