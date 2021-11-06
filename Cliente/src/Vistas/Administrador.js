@@ -106,13 +106,13 @@ function Administrador() {
       .required("Precio por noche es un campo requerido"),
       DireccionHotel:Yup.string()
       .min(3, "La dirección del Hotel debe contener como mínimo 3 caracteres")
-      .max(30, "La dirección del hotel debe contener como máximo 20 caracteres")
+      .max(30, "La dirección del hotel debe contener como máximo 30 caracteres")
       .required("La dirección del hotel es un campo requerido"),
   });
 
   const onSubmitHotel = (data) => {
     axios
-      .post("http://localhost:3001/", data)
+      .post("http://localhost:3001/Hoteles/InsertarHotel", data)
       .then(() => {
         console.log(data);
         alert("Hotel agregado exitosamente");
@@ -183,9 +183,41 @@ function Administrador() {
 
         {mostrarHotel ? (
           <>
-            <h2>adasdad</h2>
-            <h2>cosas de los hoteles asdas</h2>
-            <h2>cosas de los hoteles 2a asdada</h2>
+           <Formik
+              initialValues={valoresInicialesHotel}
+              validationSchema={validacionHotel}
+              onSubmit={onSubmitHotel}
+            >
+              <Form className="agregarCategoriaForm">
+                <div className="contenedorAgregarCategoria">
+                  <label>Nombre del hotel: </label>
+                  <ErrorMessage name="NombreHotel" component="span" />
+                  <Field
+                    autoComplete="off"
+                    id="formatoAgregarHotel"
+                    name="NombreHotel"
+                  />
+
+                  <label>Precio por noche: </label>
+                  <ErrorMessage name="PrecioPorNoche" component="span" />
+                  <Field
+                    autoComplete="off"
+                    id="formatoAgregarHotel"
+                    name="PrecioPorNoche"
+                  />
+
+                  <label>Dirección del hotel: </label>
+                  <ErrorMessage name="DireccionHotel" component="span" />
+                  <Field
+                    autoComplete="off"
+                    id="formatoAgregarHotel"
+                    name="DireccionHotel"
+                  />
+
+                  <button type="submit">Agregar Hotel</button>
+                </div>
+              </Form>
+            </Formik>
           </>
         ) : null}
       </div>

@@ -15,7 +15,7 @@ router.post("/InsertarHotel", async (req, res) => {
   //Se le pasa un objeto con el mismo formato del modelo .create es una funcion de sequelize para insertar los datos en una tabla
   await Hoteles.create(Hotel);
   // se retornan los mismos datos que se le mandan como respuesta al API request
-  res.json(Hotel) + "Hotel Insertada";
+  res.json(Hotel) + "Hotel Insertado";
 });
 
 module.exports = router;

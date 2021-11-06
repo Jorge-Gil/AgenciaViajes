@@ -16,10 +16,12 @@ const paquetesRouter = require("./Controller/PaquetesRoute");
 app.use("/Paquetes", paquetesRouter);
 const fotosPaquetesRouter = require("./Controller/FotosPaquetesRoute");
 app.use("/fotosPaquetes", fotosPaquetesRouter);
-const Categorias = require("./Controller/CategoriasRoute");
-app.use("/Categorias", Categorias);
-const Hoteles = require("./Controller/HotelRoute");
-app.use("/Hoteles", Categorias);
+const categoriasRouter = require("./Controller/CategoriasRoute");
+app.use("/Categorias", categoriasRouter);
+const hotelesRouter = require("./Controller/HotelRoute");
+app.use("/Hoteles", hotelesRouter);
+const tiposHabitacionesRouter = require("./Controller/TiposHabitacionesRoute");
+app.use("/tiposHabitaciones", tiposHabitacionesRouter);
 
 //Conexion a la base de datos
 db.sequelize
