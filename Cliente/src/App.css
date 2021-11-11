@@ -95,8 +95,9 @@ body {
 
 .Registro .botonRegistro {
   position: absolute;
-  bottom: 220px;
-  left: 840px;
+  bottom: 50px;
+  left: 570px;
+  
 }
 
 .Registro .botonRegistro button {
