@@ -5,12 +5,13 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import AgregarCategoria from "./AgregarCategoria";
+import AgregarPaqueteVista from "./AgregarPaqueteVista";
 
 function Administrador() {
   let history = useHistory();
 
   const pushAgregarPaquete = () => {
-    history.push("/agregarPaquete");
+    history.push("/AgregarPaqueteVista");
   };
 
   const pushAgregarHotel = () => {
@@ -19,6 +20,8 @@ function Administrador() {
   const pushAgregarCategoria = () => {
     history.push("/agregarCategoria");
   };
+
+  
 
   const [mostrarPaquete, setMostarPaquete] = useState(false);
   const [mostrarModificarPaquete, setMostarModificarPaquete] = useState(false);
@@ -104,19 +107,17 @@ function Administrador() {
       .min(1, "El precio por noche debe ser mayor a 0")
       .max(1000000, "El precio por noche debe ser menor a 1000000")
       .required("Precio por noche es un campo requerido"),
-      DireccionHotel:Yup.string()
+    DireccionHotel: Yup.string()
       .min(3, "La dirección del Hotel debe contener como mínimo 3 caracteres")
       .max(30, "La dirección del hotel debe contener como máximo 30 caracteres")
       .required("La dirección del hotel es un campo requerido"),
   });
 
   const onSubmitHotel = (data) => {
-    axios
-      .post("http://localhost:3001/Hoteles/InsertarHotel", data)
-      .then(() => {
-        console.log(data);
-        alert("Hotel agregado exitosamente");
-      });
+    axios.post("http://localhost:3001/Hoteles/InsertarHotel", data).then(() => {
+      console.log(data);
+      alert("Hotel agregado exitosamente");
+    });
   };
 
   return (
@@ -126,12 +127,14 @@ function Administrador() {
       <Router>
         <div className="botonesAdmin">
           <button onClick={pushAgregarCategoria}> IR Agregar Categoria</button>
+          <button onClick={pushAgregarPaquete}> IR Agregar Paquete</button>
           <Switch>
             <Route
               path="/agregarCategoria"
               exact
               component={AgregarCategoria}
             />
+            <Route path="/AgregarPaqueteVista" exact component={AgregarPaqueteVista}> </Route>
           </Switch>
         </div>
       </Router>
@@ -143,7 +146,7 @@ function Administrador() {
             setMostrarCategoria(!mostrarCategoria);
           }}
         >
-          Agregar Categoria
+          Agregar Categorias
         </button>
 
         {mostrarCategoria ? (
@@ -183,7 +186,7 @@ function Administrador() {
 
         {mostrarHotel ? (
           <>
-           <Formik
+            <Formik
               initialValues={valoresInicialesHotel}
               validationSchema={validacionHotel}
               onSubmit={onSubmitHotel}
@@ -243,7 +246,10 @@ function Administrador() {
               <input type="text" placeholder="YYYY-MM-DD hh:mm:ss" />
               <label>Fecha de fin del Paquete: </label>
               <input type="text" placeholder="YYYY-MM-DD hh:mm:ss" />
-              <label>Imagen Paquete: </label>
+              <select>
+                <option value="">Seleccione un hotel</option>
+                <option value={"uwu"}>Seleccione un hotel</option>
+                </select>
               <input type="file" name="file" accept="image/*" />
               <input type="submit" value="Subir imagen" />
               <button id="botonAgregarPaquete" onClick={insertarPaquete}>

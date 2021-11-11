@@ -22,6 +22,8 @@ const hotelesRouter = require("./Controller/HotelRoute");
 app.use("/Hoteles", hotelesRouter);
 const tiposHabitacionesRouter = require("./Controller/TiposHabitacionesRoute");
 app.use("/tiposHabitaciones", tiposHabitacionesRouter);
+const habitacionesRouter = require("./Controller/HabitacionesRoute");
+app.use("/Habitaciones", habitacionesRouter);
 
 //Conexion a la base de datos
 db.sequelize
