@@ -69,10 +69,11 @@ body {
 }
 
 .contenedorRegistro .derechaRegistro {
+  padding-top: 20px;
   display: flex;
   flex: 50%;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: right;
   align-items: center;
   padding-right: 40px;
 }
@@ -96,7 +97,7 @@ body {
 .Registro .botonRegistro {
   position: absolute;
   bottom: 50px;
-  left: 570px;
+  left: 890px;
   
 }
 
