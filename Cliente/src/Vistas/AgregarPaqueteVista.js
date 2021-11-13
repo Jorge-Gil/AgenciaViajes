@@ -1,18 +1,32 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory,useParams } from "react-router-dom";
 import axios from "axios";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
 function AgregarPaqueteVista() {
+  let { IdHotelf } = useParams();
   const [listaDeHoteles, setListaDeHoteles] = useState([]);
+  const [listaDeHabitacionesPorHotel, setListaDeHabitacionesPorHotel] =
+    useState([]);
+  const [IdHotel, setIdHotel] = useState(IdHotelf);
 
   useEffect(() => {
     axios.get("http://localhost:3001/Hoteles/").then((respuesta) => {
       console.log(respuesta.data);
       setListaDeHoteles(respuesta.data);
     });
+
+    axios
+      .get(
+        `http://localhost:3001/Habitaciones/HabitacionesPorIdHotel/${IdHotelf}`
+      )
+      .then((respuesta) => {
+        console.log(respuesta.data);
+        setListaDeHabitacionesPorHotel(respuesta.data);
+        setIdHotel(IdHotelf);
+      });
   }, []);
 
   const insertarPaquete = (data) => {
@@ -46,21 +60,28 @@ function AgregarPaqueteVista() {
           <label>Fecha de fin del Paquete: </label>
           <input type="text" placeholder="YYYY-MM-DD hh:mm:ss" />
 
+          <label>Hotel: </label>
           <select>
-           {/* for (let i = 0; i < listaDeHoteles.length; i++) {
+            {/* for (let i = 0; i < listaDeHoteles.length; i++) {
               <option value={listaDeHoteles[i].idHotel}>{listaDeHoteles.nombreHotel}</option>
 
            } */}
 
-
-              {listaDeHoteles.map((value, key) => {
-                return (<option value={value.idHotel}>{value.NombreHotel}</option>)
-                
-               
-              })}
-           
+            {listaDeHoteles.map((value, key) => {
+              return <option value={value.idHotel}>{value.NombreHotel}</option>;
+            })}
           </select>
 
+          <label>Habitacion: </label>
+          <select>
+            {listaDeHabitacionesPorHotel.map((value, key) => {
+              return (
+                <option value={value.idHabitacion(IdHotel)}>
+                  {value.NumeroHabitacion}
+                </option>
+              );
+            })}
+          </select>
           {/* <select>
             <option value="">Seleccione un hotel</option>
             <option value={"uwu"}>asd</option>

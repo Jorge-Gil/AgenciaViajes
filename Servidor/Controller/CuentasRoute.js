@@ -3,7 +3,7 @@ const router = express.Router();
 const { Cuentas } = require("../models");
 const bcrypt = require("bcrypt");
 const { sign } = require("jsonwebtoken");
-const {validarToken} = require("../middleware/MiddlewareAutenticacion")
+const { validarToken } = require("../middleware/MiddlewareAutenticacion");
 
 router.get("/", async (req, res) => {
   const listaDeCuentas = await Cuentas.findAll();
@@ -80,12 +80,44 @@ router.post("/IniciarSesion", async (req, res) => {
       /*se le pasa una palabra secreta que protege al token*/ "Secreto"
     );
 
-    res.json({token: TokenAcceso, NombreUsuario: NombreUsuario, IdCuenta: Cuenta.IdCuenta});
+    res.json({
+      token: TokenAcceso,
+      NombreUsuario: NombreUsuario,
+      IdCuenta: Cuenta.IdCuenta,
+    });
   });
 });
 
-router.get("/Cuenta", validarToken, (req,res) =>{
-  res.json(req.Cuenta)
-})
+router.get("/Cuenta", validarToken, (req, res) => {
+  res.json(req.Cuenta);
+});
+
+router.get("/InfoCuenta/:IdCuenta", async (req, res) => {
+  const IdCuenta = req.params.IdCuenta;
+
+  const InfoCuenta = await Cuentas.findByPk(IdCuenta, {
+    attributes: { exclude: ["Contrasenia"] },
+  });
+
+  res.json(InfoCuenta);
+});
+
+router.put("/CambiarContrasenia", validarToken, async (req, res) => {
+  const { contraseniaVieja, contraseniaNueva } = req.body;
+  const Cuenta = await Cuentas.findOne({
+    where: { IdCuenta: req.Cuenta.IdCuenta },
+  });
+
+  bcrypt.compare(contraseniaVieja, Cuenta.Contrasenia).then(async (igual) => {
+    if (!igual) res.json({ error: "Contraseña incorrecta" });
+
+    bcrypt.hash(contraseniaNueva, 10).then((hash) => {
+      Cuentas.update(
+        { Contrasenia: hash },
+        { where: { IdCuenta: req.Cuenta.IdCuenta } }
+      );
+    });
+  });
+});
 
 module.exports = router;

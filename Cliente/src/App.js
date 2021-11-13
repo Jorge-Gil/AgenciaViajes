@@ -1,6 +1,6 @@
 import "./App.css";
 import { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { useHistory,BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import Home from "./Vistas/Home";
 import Registro from "./Vistas/Registro";
 import IniciarSesion from "./Vistas/IniciarSesion";
@@ -9,9 +9,14 @@ import { Autorizacion } from "./Autorizacion";
 import Administrador from "./Vistas/Administrador";
 import AgregarCategoria from "./Vistas/AgregarCategoria";
 import AgregarPaqueteVista from "./Vistas/AgregarPaqueteVista";
+import PerfilUsuarioVista from "./Vistas/PerfilUsuarioVista";
 import axios from "axios";
+import { Button } from "@material-ui/core";
 
 function App() {
+
+  let history = useHistory();
+
   // variable que tendra el estado de la autorización, falsa por defecto
   const [estadoAutorizacion, setEstadoAutorizacion] = useState({
     NombreUsuario: "",
@@ -44,6 +49,10 @@ function App() {
     setEstadoAutorizacion({ NombreUsuario: "", IdCuenta: 0, status: false });
   };
 
+    const pushPerfilUsuario = () => {
+      history.push(`/PerfilUsuarioVista/${estadoAutorizacion.IdCuenta}`);
+    };
+
   return (
     <div className="App">
       <Autorizacion.Provider
@@ -71,7 +80,8 @@ function App() {
                 </>
               ) : null}
             </div>
-            <h1>{estadoAutorizacion.NombreUsuario}</h1>
+            {/* <button onClick= {pushPerfilUsuario}>{estadoAutorizacion.NombreUsuario}</button> */}
+            <Link to={`/PerfilUsuarioVista/${estadoAutorizacion.IdCuenta}`}>{estadoAutorizacion.NombreUsuario}</Link>
           </div>
           <Switch>
             <Route path="/" exact component={Home} />
@@ -80,6 +90,7 @@ function App() {
             <Route path="/admin" exact component={Administrador} />
             <Route path="/agregarCategoria" exact component={AgregarCategoria} />
             <Route path="/AgregarPaqueteVista" exact component={AgregarPaqueteVista} />
+            <Route path="/PerfilUsuarioVista/:IdCuenta" exact component={PerfilUsuarioVista} />
           </Switch>
         </Router>
       </Autorizacion.Provider>

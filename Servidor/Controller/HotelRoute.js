@@ -4,6 +4,7 @@ const { Hoteles } = require("../models");
 
 router.get("/", async (req, res) => {
   const todosLosHoteles = await Hoteles.findAll();
+  Hoteles.IdHotel = todosLosHoteles.map(hotel => hotel.IdHotel);
   res.json(todosLosHoteles);
 });
 
