@@ -3,9 +3,12 @@ import axios from "axios";
 
 function Home() {
     return (
-        <div>
-            Pagina principal, en construcción.
+        <section className= 'home'>
+        <div className = 'overlay'>
+            <h1>Advance Travel</h1>
+            <p>Reserva tu viaje por Colombia</p>
         </div>
+        </section>
     )
 }
 
